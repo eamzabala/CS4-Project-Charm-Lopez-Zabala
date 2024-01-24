@@ -8,4 +8,8 @@ public class Potion extends Item {
         roundsActive = r;
         roundsLeft = r;
     }
+    
+    public void decRounds() {
+        roundsLeft--;
+    }
 }
