@@ -12,4 +12,9 @@ public class Potion extends Item {
     public void decRounds() {
         roundsLeft--;
     }
+    
+    @Override 
+    public void getStats(){
+        System.out.printf("%d, %d", roundsActive, roundsLeft);
+    }
 }

@@ -10,11 +10,10 @@ public abstract class Hero extends Entity{
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Potion> activePotions = new ArrayList<>();
             
-    public Hero(String n, int m, int c, int a, int d, int x, int r) {
-        super(n, m, c, a, d);
+    public Hero(String n, int m, int a, int d, int x) {
+        super(n, m, a, d);
         maxMana = x;
-        currentMana = r;
-        money = 0;
+        currentMana = maxMana;
     }
     
     @Override
@@ -43,16 +42,19 @@ public abstract class Hero extends Entity{
     // change skills
     
     // can use potion
-    public void use(Potion n) {
+    public void use(Potion n) { 
         if (items.contains(n)) {
             activePotions.add(n);
         }
     }
     
     // can use skill
+    
     // can buy
     public void buy(Shop n, Item m) {
-        
+        if (n.getItems().contains(m)) {
+                
+        }
     }
     
 }

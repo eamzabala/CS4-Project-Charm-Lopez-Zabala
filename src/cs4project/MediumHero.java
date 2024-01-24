@@ -1,14 +1,14 @@
 package cs4project;
 
 public class MediumHero extends Hero {
-    public MediumHero(String n, int m, int c, int a, int d, int x, int r) {
-        super(n, m, c, a, d, x, r);
+    public MediumHero(String n, int m, int a, int d, int x) {
+        super(n, m, a, d, x);
         maxHP = m;
-        currentHP = c;
+        currentHP = maxHP;
         def = d;
         atk = a;
         maxMana = x;
-        currentMana = r;
+        currentMana = maxMana;
         money = 0;
     }
 }

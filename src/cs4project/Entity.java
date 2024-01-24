@@ -7,10 +7,10 @@ public abstract class Entity implements Understandable{
     protected int maxHP, currentHP, atk, def;
     protected ArrayList<Skill> skills = new ArrayList<>();
     
-    public Entity(String n, int m, int c, int a, int d) {
+    public Entity(String n, int m, int a, int d) {
         name = n;
         maxHP = m;
-        currentHP = c;
+        currentHP = maxHP;
         atk = a;
         def = d;
     }
