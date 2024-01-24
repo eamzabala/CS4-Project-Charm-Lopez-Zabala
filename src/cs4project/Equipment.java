@@ -11,16 +11,16 @@ public class Equipment extends Item {
         
         switch(b) {
             case 0:
-              modHP =+ (int) Math.round(Math.random() * 10); // multiply by bigger depending on how big mods are
+              modHP += (int) Math.round(Math.random() * 10); // multiply by bigger depending on how big mods are
               break;
             case 1:
-              modAtk =+ 0;
+              modAtk += 0;
               break;
             case 2:
-              modDef =+ 0;
+              modDef += 0;
               break;
             case 3:
-              modMana =+ 0;
+              modMana += 0;
         }
     }
 }

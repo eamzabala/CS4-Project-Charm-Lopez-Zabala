@@ -24,16 +24,16 @@ public abstract class Hero extends Entity{
     
     @Override
     public void attack(Entity n) {
-        this.currentMana =+ 0.1 * maxMana;
+        this.currentMana += 0.1 * maxMana;
     }
     
     // change equipment
     public void equip(Equipment n) {
         if (inventory.contains(n)) {
             currentEquip = n;
-            this.maxHP =+ n.getModHP();
-            this.atk =+ n.getModAtk();
-            this.def =+ n.getModDef();
+            this.maxHP += n.getModHP();
+            this.atk += n.getModAtk();
+            this.def += n.getModDef();
             // mana stuff
         } else {
             //throw exception
