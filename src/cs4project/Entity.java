@@ -1,11 +1,10 @@
 package cs4project;
 
-import java.util.ArrayList;
 
 public abstract class Entity implements Understandable{
     protected String name;
     protected int maxHP, currentHP, atk, def;
-    protected ArrayList<Skill> skills = new ArrayList<>();
+    protected Skill[] skills = new Skill[2];
     
     public Entity(String n, int m, int a, int d) {
         name = n;
@@ -13,6 +12,10 @@ public abstract class Entity implements Understandable{
         currentHP = maxHP;
         atk = a;
         def = d;
+    }
+    
+    public void setHealth(int n) {
+        this.currentHP -= n;
     }
     
     public String getName() {
@@ -35,15 +38,7 @@ public abstract class Entity implements Understandable{
     public void getStats(){
         System.out.printf("%s: %d, %d, %d, %d", name, maxHP, currentHP, atk, def);
     }
-    
-    public void useSkill(Skill n) {
-        if(skills.contains(n)) {
-            // n.use ?? WHSHAHSHA
-        }
-    }
-    
-    // use skill: get using name, get using index number
-    // when u have the skill, you skill.something
+        
     
     public void attack(Entity n) {
         int damage = (int) (0.1 * (atk*atk)/(double)(atk+n.getDef()));

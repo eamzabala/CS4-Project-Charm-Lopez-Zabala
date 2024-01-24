@@ -6,8 +6,8 @@ import java.util.Arrays;
 public abstract class Hero extends Entity{
     protected double maxMana, currentMana;
     protected static int money = 20;
-    protected Equipment currentEquip;
-    protected ArrayList<PlayerAbility> skills = new ArrayList<>();
+    protected Equipment[] currentEquip = new Equipment[2];
+    protected PlayerAbility[] skills = new PlayerAbility[4];
     private ArrayList<Item> inventory = new ArrayList<>();
     private ArrayList<Potion> activePotions = new ArrayList<>();
             
@@ -15,6 +15,14 @@ public abstract class Hero extends Entity{
         super(n, m, a, d);
         maxMana = x;
         currentMana = maxMana;
+    }
+    
+    public void addAtk(int n){
+        atk += n;
+    }
+    
+    public ArrayList<Item> getInvetory() {
+        return inventory;
     }
     
     @Override
@@ -30,17 +38,29 @@ public abstract class Hero extends Entity{
     // change equipment
     public void equip(Equipment n) {
         if (inventory.contains(n)) {
-            currentEquip = n;
+            (Arrays.asList(currentEquip)).add(n);
             this.maxHP += n.getModHP();
             this.atk += n.getModAtk();
             this.def += n.getModDef();
-            // mana stuff
+            this.currentMana += n.getModMana();
         } else {
             //throw exception
         }
     }
     
-    // change skills
+    // add skill
+    public void addAbil(PlayerAbility n) {
+        if(skills.length < 4) { 
+            Arrays.asList(skills).add(n);
+        } else {
+            // exception here
+        }
+    }
+    
+    // change skillsList
+    public void removeAbil(PlayerAbility n) {
+        Arrays.asList(skills).remove(n);
+    }
     
     // can use potion
     public void use(Potion n) { 
@@ -50,12 +70,19 @@ public abstract class Hero extends Entity{
     }
     
     // can use skill
+    public void useAbil(PlayerAbility n, Enemy m) {
+        if ((Arrays.asList(skills)).contains(n)) {
+            n.activate(m, atk);
+            this.currentMana -= n.getManaCost();
+        }
+    }
+    
     
     // can buy
     public void buy(Shop n, Potion m) {
         if (Arrays.asList(n.getPotionsList()).contains(m)) {
-            // remove from store's potions list
-            // add to inventory
+            inventory.add(m);
+            Arrays.asList(n.getPotionsList()).remove(m);
         }
     }
     

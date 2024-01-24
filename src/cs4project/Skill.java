@@ -11,4 +11,9 @@ public class Skill {
         atkInc = a;
         defInc = i;
     }
+    
+    public void activate(Entity m, int n){
+        int dec = n * atkInc;
+        m.setHealth(dec);
+    }
 }
