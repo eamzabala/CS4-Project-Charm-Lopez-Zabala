@@ -1,11 +1,15 @@
 package cs4project;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Shop extends Area {
-    private ArrayList<Item> items = new ArrayList<>();
+    private Potion[] potionsList = new Potion[3];
+    private Equipment[] equipmentsList = new Equipment[3];
     
-    public ArrayList<Item> getItems() {
-        return items;
+    public Potion[] getPotionsList() {
+        return potionsList;
+    }
+    public Equipment[] getEquipmentList() {
+        return equipmentsList;
     }
 }
