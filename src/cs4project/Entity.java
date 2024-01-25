@@ -14,8 +14,26 @@ public abstract class Entity implements Understandable{
         def = d;
     }
     
-    public void setHealth(int n) {
-        this.currentHP -= n;
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
+    }
+    public void setCurrentHP(int currentHP) {
+        this.currentHP = currentHP;
+    }
+    public void setAtk(int atk) {
+        this.atk = atk;
+    }
+    public void setDef(int def) {
+        this.def = def;
+    }
+    public void setSkills(Skill[] skills) {
+        this.skills = skills;
+    }
+    public void setHP(int n) {
+        this.setCurrentHP(this.getCurrentHP() + n);
     }
     
     public String getName() {
@@ -33,24 +51,29 @@ public abstract class Entity implements Understandable{
     public int getDef() {
         return def;
     }
+    public Skill[] getSkills() {
+        return skills;
+    }
     
     @Override
     public void getStats(){
-        System.out.printf("%s: %d, %d, %d, %d", name, maxHP, currentHP, atk, def);
+        System.out.printf("%s: %d, %d, %d, %d", getName(), getMaxHP(), getCurrentHP(), getAtk(), getDef());
     }
         
     
     public void attack(Entity n) {
-        int damage = (int) (0.1 * (atk*atk)/(double)(atk+n.getDef()));
-        n.currentHP -= damage;
-        if(n.currentHP > 0) {
+        int damage = (int) (0.1 * (getAtk()*getAtk())/(double)(getAtk()+n.getDef()));
+        n.setCurrentHP(n.getCurrentHP() - damage);
+        if(n.getCurrentHP() > 0) {
             System.out.printf("");
         }
 
-        if(n.currentHP <= 0){
-            n.currentHP = 0;
+        if(n.getCurrentHP() <= 0){
+            n.setCurrentHP(0);
             System.out.printf("%s died. %n", n.getName());
         }
     }
+
+    
 }
 

@@ -7,7 +7,7 @@ public class Boss extends Enemy {
     }
      
     public void special() {
-        currentHP = (int) 0.5 * maxHP;
+        setCurrentHP((int) 0.5 * getMaxHP());
     }
     
 }

@@ -6,6 +6,6 @@ public class Enemy extends Entity {
     }
     
     public void useSkill(Skill n, Hero m) {
-        n.activate(m, atk);
+        n.activate(m, getAtk());
     }
 }

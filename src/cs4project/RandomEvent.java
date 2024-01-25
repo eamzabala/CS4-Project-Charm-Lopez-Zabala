@@ -10,14 +10,14 @@ public class RandomEvent extends Area {
     }
     
     public void success(Hero n, Item m) {
-        n.getInvetory().add(m);
+        n.getInventory().add(m);
         int buff = (int) (Math.round(Math.random() * 100) * riskToReward);
-        n.addAtk(buff);
+        n.setAtk(buff);
     }
     
     public void fail(Hero n) {
-        n.money -= (int) 10 * riskToReward;
-        n.currentHP -= (int) 100 * riskToReward;
+        n.setMoney((int) (n.getMoney() - (int) 10 * riskToReward));
+        n.setCurrentHP((int) (n.getCurrentHP() - (int) 100 * riskToReward));
     }
    
 }

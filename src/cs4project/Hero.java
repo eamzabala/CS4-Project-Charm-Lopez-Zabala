@@ -8,8 +8,8 @@ public abstract class Hero extends Entity{
     protected static int money = 20;
     protected Equipment[] currentEquip = new Equipment[2];
     protected PlayerAbility[] skills = new PlayerAbility[4];
-    private ArrayList<Item> inventory = new ArrayList<>();
-    private ArrayList<Potion> activePotions = new ArrayList<>();
+    protected ArrayList<Item> inventory = new ArrayList<>();
+    protected ArrayList<Potion> activePotions = new ArrayList<>();
             
     public Hero(String n, int m, int a, int d, int x) {
         super(n, m, a, d);
@@ -17,32 +17,67 @@ public abstract class Hero extends Entity{
         currentMana = maxMana;
     }
     
-    public void addAtk(int n){
-        atk += n;
+    public double getMaxMana() {
+        return maxMana;
     }
-    
-    public ArrayList<Item> getInvetory() {
+    public void setMaxMana(double maxMana) {
+        this.maxMana = maxMana;
+    }
+    public double getCurrentMana() {
+        return currentMana;
+    }
+    public void setCurrentMana(double currentMana) {
+        this.currentMana = currentMana;
+    }
+    public static int getMoney() {
+        return money;
+    }
+    public static void setMoney(int aMoney) {
+        money = aMoney;
+    }
+    public Equipment[] getCurrentEquip() {
+        return currentEquip;
+    }
+    public void setCurrentEquip(Equipment[] currentEquip) {
+        this.currentEquip = currentEquip;
+    }
+    public PlayerAbility[] getSkills() {
+        return skills;
+    }
+    public void setSkills(PlayerAbility[] skills) {
+        this.skills = skills;
+    }
+    public ArrayList<Item> getInventory() {
         return inventory;
+    }
+    public void setInventory(ArrayList<Item> inventory) {
+        this.inventory = inventory;
+    }
+        public ArrayList<Potion> getActivePotions() {
+        return activePotions;
+    }
+    public void setActivePotions(ArrayList<Potion> activePotions) {
+        this.activePotions = activePotions;
     }
     
     @Override
     public void getStats() {
-        System.out.printf(", %d, %d", maxMana, currentMana);
+        System.out.printf(", %d, %d", getMaxMana(), getCurrentMana());
     }
     
     @Override
     public void attack(Entity n) {
-        this.currentMana += 0.1 * maxMana;
+        this.setCurrentMana(this.getCurrentMana() + 0.1 * getMaxMana());
     }
     
     // change equipment
     public void equip(Equipment n) {
-        if (inventory.contains(n)) {
-            (Arrays.asList(currentEquip)).add(n);
-            this.maxHP += n.getModHP();
-            this.atk += n.getModAtk();
-            this.def += n.getModDef();
-            this.currentMana += n.getModMana();
+        if (getInventory().contains(n)) {
+            (Arrays.asList(getCurrentEquip())).add(n);
+            this.setMaxHP(this.getMaxHP() + n.getModHP());
+            this.setAtk(this.getAtk() + n.getModAtk());
+            this.setDef(this.getDef() + n.getModDef());
+            this.setCurrentMana(this.getCurrentMana() + n.getModMana());
         } else {
             //throw exception
         }
@@ -50,40 +85,49 @@ public abstract class Hero extends Entity{
     
     // add skill
     public void addAbil(PlayerAbility n) {
-        if(skills.length < 4) { 
-            Arrays.asList(skills).add(n);
+        if(getSkills().length < 4) { 
+            Arrays.asList(getSkills()).add(n);
         } else {
             // exception here
         }
     }
     
-    // change skillsList
+    // remove skill
     public void removeAbil(PlayerAbility n) {
-        Arrays.asList(skills).remove(n);
+        Arrays.asList(getSkills()).remove(n);
     }
     
     // can use potion
     public void use(Potion n) { 
-        if (inventory.contains(n)) {
-            activePotions.add(n);
+        if (getInventory().contains(n)) {
+            getActivePotions().add(n);
         }
     }
     
     // can use skill
     public void useAbil(PlayerAbility n, Enemy m) {
-        if ((Arrays.asList(skills)).contains(n)) {
-            n.activate(m, atk);
-            this.currentMana -= n.getManaCost();
+        if ((Arrays.asList(getSkills())).contains(n)) {
+            n.activate(m, getAtk());
+            this.setCurrentMana(this.getCurrentMana() - n.getManaCost());
         }
     }
-    
     
     // can buy
     public void buy(Shop n, Potion m) {
         if (Arrays.asList(n.getPotionsList()).contains(m)) {
-            inventory.add(m);
+            getInventory().add(m);
             Arrays.asList(n.getPotionsList()).remove(m);
         }
+    }
+    
+    // entering a new room
+    public void enter(Area n) {
+        Map.setCurrentArea(n);
+    }
+    
+    // gets stats
+    public void understand(Understandable n) {
+        n.getStats();
     }
     
 }

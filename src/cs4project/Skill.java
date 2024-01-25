@@ -14,6 +14,6 @@ public class Skill {
     
     public void activate(Entity m, int n){
         int dec = n * atkInc;
-        m.setHealth(dec);
+        m.setHP(dec);
     }
 }

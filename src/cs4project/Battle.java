@@ -6,10 +6,12 @@ public class Battle extends Area {
      private ArrayList<Enemy> enemiesList = new ArrayList<>();
      private boolean boss;
      
+     
+     
      public void win(Hero n, Item m){
-        n.getInvetory().add(m);
+        n.getInventory().add(m);
         int buff = (int) (Math.round(Math.random() * 100));
-        n.addAtk(buff);
+        n.setAtk(buff);
      }
      
      public void lose(Map m){
