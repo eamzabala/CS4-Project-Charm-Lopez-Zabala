@@ -9,8 +9,12 @@ public class Potion extends Item {
         roundsLeft = r;
     }
     
-    public void decRounds() {
+    public void decRounds(Hero n) {
         roundsLeft--;
+        if(roundsLeft == 0) {
+            n.getActivePotions().remove(this);
+            roundsLeft = roundsActive;
+        }
     }
     
     @Override 

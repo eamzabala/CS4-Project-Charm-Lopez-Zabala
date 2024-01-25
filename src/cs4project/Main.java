@@ -12,9 +12,9 @@ public class Main {
         Enemy e3 = new Enemy("Griffin", 7895, 1724, 684);
         
         // Scenario 1 - Battle
-        h1.enter();
+        //h1.enter();
         h1.attack(e1);
-        h2.
+        //h2.
         
         // Scenario 2 - Shop
         

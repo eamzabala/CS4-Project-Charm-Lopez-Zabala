@@ -35,7 +35,6 @@ public abstract class Entity implements Understandable{
     public void setHP(int n) {
         this.setCurrentHP(this.getCurrentHP() + n);
     }
-    
     public String getName() {
         return name;
     }
@@ -66,9 +65,7 @@ public abstract class Entity implements Understandable{
         n.setCurrentHP(n.getCurrentHP() - damage);
         if(n.getCurrentHP() > 0) {
             System.out.printf("");
-        }
-
-        if(n.getCurrentHP() <= 0){
+        } else {
             n.setCurrentHP(0);
             System.out.printf("%s died. %n", n.getName());
         }

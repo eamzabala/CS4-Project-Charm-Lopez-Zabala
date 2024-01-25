@@ -41,6 +41,7 @@ public abstract class Hero extends Entity{
     public void setCurrentEquip(Equipment[] currentEquip) {
         this.currentEquip = currentEquip;
     }
+    @Override
     public PlayerAbility[] getSkills() {
         return skills;
     }
@@ -62,7 +63,7 @@ public abstract class Hero extends Entity{
     
     @Override
     public void getStats() {
-        System.out.printf(", %d, %d", getMaxMana(), getCurrentMana());
+        System.out.printf(", %f, %f", getMaxMana(), getCurrentMana());
     }
     
     @Override
@@ -80,6 +81,19 @@ public abstract class Hero extends Entity{
             this.setCurrentMana(this.getCurrentMana() + n.getModMana());
         } else {
             //throw exception
+        }
+    }
+    
+    // remove equipment
+    public void removeEquip(Equipment n) {
+        if (Arrays.asList(getCurrentEquip()).contains(n)) {
+            getInventory().add(n);
+            this.setMaxHP(this.getMaxHP() - n.getModHP());
+            this.setAtk(this.getAtk() - n.getModAtk());
+            this.setDef(this.getDef() - n.getModDef());
+            this.setCurrentMana(this.getCurrentMana() - n.getModMana());
+        } else {
+            
         }
     }
     
