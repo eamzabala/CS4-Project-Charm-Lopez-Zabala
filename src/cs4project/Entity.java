@@ -1,5 +1,7 @@
 package cs4project;
 
+import java.util.Arrays;
+
 
 public abstract class Entity implements Understandable{
     protected String name;
@@ -70,7 +72,24 @@ public abstract class Entity implements Understandable{
             System.out.printf("%s died. %n", n.getName());
         }
     }
-
     
+    public void useSkill(Skill n, Entity target) {
+        if ((Arrays.asList(getSkills())).contains(n)) {
+            this.setCurrentHP(this.getCurrentHP() + n.getHealVal());
+            this.setAtk(this.getAtk() + n.getAtkInc());
+            this.setDef(this.getDef() + n.getDefInc());
+
+            if(n.getAtkInc() > 0) {
+                int damage = (int) ((this.getAtk()*this.getAtk())/(double)(this.getAtk()+target.getDef()));
+                target.setCurrentHP(target.getCurrentHP() - damage);
+                if(target.getCurrentHP() > 0) {
+                    System.out.printf("");
+                } else {
+                    target.setCurrentHP(0);
+                    System.out.printf("%s died. %n", n.getName());
+                }
+            }
+        }
+    }    
 }
 

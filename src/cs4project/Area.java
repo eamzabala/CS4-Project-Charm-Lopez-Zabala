@@ -10,7 +10,7 @@ public abstract class Area {
     public Area[] getNextAreas() {
         return nextAreas;
     }
-        public void setLevel(int level) {
+    public void setLevel(int level) {
         this.level = level;
     }
     public void setNextAreas(Area[] nextAreas) {

@@ -118,12 +118,9 @@ public abstract class Hero extends Entity{
         }
     }
     
-    // can use skill
-    public void useAbil(PlayerAbility n, Enemy m) {
-        if ((Arrays.asList(getSkills())).contains(n)) {
-            n.activate(m, getAtk());
-            this.setCurrentMana(this.getCurrentMana() - n.getManaCost());
-        }
+    // @Override
+    public void useSkill(PlayerAbility n, Entity target) {
+        this.setCurrentMana(this.getCurrentMana() - n.getManaCost());
     }
     
     // can buy
