@@ -13,6 +13,7 @@ public abstract class Item implements Understandable{
         price = p;
     }
     
+    // getters & setters
     public int getModHP(){
         return modHP;
     }
@@ -27,7 +28,7 @@ public abstract class Item implements Understandable{
     }
     
     @Override
-    public void getStats(){
+    public void getStats(){         // displays name and hp, atk, def, and mana mods
         System.out.printf("%s: %d, %d, %d, %d", name, modHP, modAtk, modDef, modMana);
     }
 }

@@ -1,7 +1,7 @@
 package cs4project;
 
 public class LightHero extends Hero {
-    public LightHero(String n, int m, int a, int d, int x) {
+    public LightHero(String n, int m, int a, int d, int x) {                    // hero but w multipliers of for 0.8 all stats
         super(n, m, a, d, x);
         maxHP = (int) Math.round(m * 0.8);
         currentHP = maxHP;

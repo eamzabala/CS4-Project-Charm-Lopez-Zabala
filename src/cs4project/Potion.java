@@ -9,7 +9,7 @@ public class Potion extends Item {
         roundsLeft = r;
     }
     
-    public void decRounds(Hero n) {
+    public void decRounds(Hero n) {                                             // called after every round
         roundsLeft--;
         if(roundsLeft == 0) {
             n.getActivePotions().remove(this);
@@ -18,7 +18,7 @@ public class Potion extends Item {
     }
     
     @Override 
-    public void getStats(){
+    public void getStats(){                                                     // also displays the rounds it can be active for, and rounds left
         System.out.printf("%d, %d", roundsActive, roundsLeft);
     }
 }

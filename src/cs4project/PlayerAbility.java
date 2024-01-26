@@ -2,9 +2,8 @@ package cs4project;
 
 import java.util.ArrayList;
 
-public class PlayerAbility extends Skill {
+public class PlayerAbility extends Skill {                                      // same as skill but has mana cost
     private int manaCost, numTargets;
-    private String type;
     private ArrayList<Enemy> enemyTargets = new ArrayList<>();
     private ArrayList<Hero> allyTargets = new ArrayList<>();
     
@@ -14,9 +13,6 @@ public class PlayerAbility extends Skill {
         numTargets = t;
     }
     
-    public String getType(){
-        return type;
-    }
     public int getManaCost(){
         return manaCost;
     }
@@ -28,9 +24,6 @@ public class PlayerAbility extends Skill {
     }
     public void setNumTargets(int numTargets) {
         this.numTargets = numTargets;
-    }
-    public void setType(String type) {
-        this.type = type;
     }
     public ArrayList<Enemy> getEnemyTargets() {
         return enemyTargets;

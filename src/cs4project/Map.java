@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Map {
-    private static Area currentArea;
+    private static Area currentArea;                                            // the area the player is in
     private int bossLevel;
     
     public static void setCurrentArea(Area n){
@@ -29,14 +29,7 @@ public class Map {
         }
     }
     
-    public void enter(Map map, Area area) throws IllegalArgumentException {
-        if (Arrays.asList(currentArea.getNextAreas()).contains(area))
-            throw new IllegalArgumentException("Area inaccessible.");
-        
-        map.currentArea = area;
-    }
-    
-    public void gameOver() {
+    public void gameOver() {                                                    // ends the game 
         System.out.printf("You have lost the game. Try again next time.");
     }
 }

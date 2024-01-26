@@ -20,12 +20,12 @@ public class Battle extends Area {
     }
      
      public void win(Hero n, Item m){
-        n.getInventory().add(m);
-        int buff = (int) (Math.round(Math.random() * 100));
-        n.setAtk(buff);
+        n.getInventory().add(m);                                      // adds a new item to hero's inventory
+        int buff = (int) (Math.round(Math.random() * 1000));            // gives a random buff (in the 100s)
+        n.setAtk(n.getAtk() + buff);                                    // sets hero's atk to be atk + buff
      }
      
      public void lose(Map m){
-         m.gameOver();
+         m.gameOver();                                                  // game ends when battle is lost
      }
 }
