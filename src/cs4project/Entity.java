@@ -71,9 +71,5 @@ public abstract class Entity implements Understandable{
             n.setCurrentHP(0);
             System.out.printf("%s died. %n", n.getName());
         }
-    }
-    
-    public void useSkill(Skill n, Entity target) {
-        
-    }    
+    }  
 }

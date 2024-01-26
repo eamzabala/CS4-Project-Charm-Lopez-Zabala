@@ -11,6 +11,7 @@ public abstract class Hero extends Entity{
     protected PlayerAbility[] skills = new PlayerAbility[4];
     protected ArrayList<Item> inventory = new ArrayList<>();
     protected ArrayList<Potion> activePotions = new ArrayList<>();
+    protected ArrayList<PlayerAbility> activeAbilities = new ArrayList<>();
             
     public Hero(String n, int m, int a, int d, int x) {
         super(n, m, a, d);
@@ -115,13 +116,13 @@ public abstract class Hero extends Entity{
     
     // remove skill
     public void removeAbil(PlayerAbility n) {
-        Arrays.asList(getSkills()).remove(n);
+        Arrays.asList(skills).remove(n);
     }
     
     // can use potion
     public void use(Potion n) { 
         if (getInventory().contains(n)) {
-            getActivePotions().add(n);
+            activePotions.add(n);
         }
     }
     
@@ -132,7 +133,7 @@ public abstract class Hero extends Entity{
             this.setAtk(this.getAtk() + n.getAtkInc());
             this.setDef(this.getDef() + n.getDefInc());
        
-            if(n.getAtkInc() > 0) {
+            if(n.getType().equals("attack")) {
                 int damage = (int) ((this.getAtk()*this.getAtk())/(double)(this.getAtk()+target.getDef()));
                 target.setCurrentHP(target.getCurrentHP() - damage);
                 if(target.getCurrentHP() > 0) {
@@ -141,6 +142,10 @@ public abstract class Hero extends Entity{
                     target.setCurrentHP(0);
                     System.out.printf("%s died. %n", target.getName());
                 }
+            }
+            
+            if(n.getType().equals("shield")) {
+                this.shield += n.getShield();
             }
             
         }
