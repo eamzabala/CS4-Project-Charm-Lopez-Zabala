@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 public abstract class Hero extends Entity{
     protected double maxMana, currentMana;
+    protected int shield = 0;
     protected static int money = 20;
     protected Equipment[] currentEquip = new Equipment[2];
     protected PlayerAbility[] skills = new PlayerAbility[4];
@@ -28,6 +29,12 @@ public abstract class Hero extends Entity{
     }
     public void setCurrentMana(double currentMana) {
         this.currentMana = currentMana;
+    }
+    public int getShield() {
+        return shield;
+    }
+    public void setShield(int shield) {
+        this.shield = shield;
     }
     public static int getMoney() {
         return money;
@@ -119,7 +126,24 @@ public abstract class Hero extends Entity{
     }
     
     // @Override
-    public void useSkill(PlayerAbility n, Entity target) {
+    public void useSkill(PlayerAbility n, Enemy target) {
+        if ((Arrays.asList(getSkills())).contains(n)) {
+            this.setCurrentHP(this.getCurrentHP() + n.getHealVal());
+            this.setAtk(this.getAtk() + n.getAtkInc());
+            this.setDef(this.getDef() + n.getDefInc());
+       
+            if(n.getAtkInc() > 0) {
+                int damage = (int) ((this.getAtk()*this.getAtk())/(double)(this.getAtk()+target.getDef()));
+                target.setCurrentHP(target.getCurrentHP() - damage);
+                if(target.getCurrentHP() > 0) {
+                    System.out.printf("");
+                } else {
+                    target.setCurrentHP(0);
+                    System.out.printf("%s died. %n", target.getName());
+                }
+            }
+            
+        }
         this.setCurrentMana(this.getCurrentMana() - n.getManaCost());
     }
     
