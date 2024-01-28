@@ -30,7 +30,8 @@ public class Battle extends Area {
         n.setAtk(n.getAtk() + buff);                                    // sets hero's atk to be atk + buff
      }
      
-     public void lose(Map m){
-         m.gameOver();                                                  // game ends when battle is lost
+     public void lose(){
+         Area.gameOver();                                               // game ends when battle is lost
      }
+     
 }

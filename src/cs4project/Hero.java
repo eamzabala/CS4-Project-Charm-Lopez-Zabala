@@ -115,7 +115,7 @@ public abstract class Hero extends Entity{
         }
     }
     
-    public void useSkill(PlayerAbility n, Enemy target) {                               // activate/use skill
+    public void useSkill(PlayerAbility n, Entity target) {                              // activate/use skill
         if ((Arrays.asList(getSkills())).contains(n)) {                             // checks if in skills
             this.setCurrentHP(this.getCurrentHP() + n.getHealVal());                    // heals
             this.setAtk(this.getAtk() + n.getAtkInc());                                 // atk buff
@@ -148,7 +148,7 @@ public abstract class Hero extends Entity{
     }
     
     public void enter(Area n) {                                                         // enter a new room
-        Map.setCurrentArea(n);
+        Area.setCurrentArea(n);
     }
     
     public void understand(Understandable n) {                                          // get stats from Understandables

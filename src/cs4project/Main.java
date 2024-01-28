@@ -3,16 +3,18 @@ package cs4project;
 public class Main {
 
     public static void main(String[] args) {
-        LightHero h1 = new LightHero("Ray", 5000, 3435, 1236, 500);
-        MediumHero h2 = new MediumHero("Jake", 5000, 3435, 1236, 500);
-        HeavyHero h3 = new HeavyHero("Kyle", 5000, 3435, 1236, 500);
+        LightHero h1 = new LightHero("Ray", 15000, 3435, 1236, 500);
+        MediumHero h2 = new MediumHero("Jake", 15000, 3435, 1236, 500);
+        HeavyHero h3 = new HeavyHero("Kyle", 15000, 3435, 1236, 500);
         
-        Enemy e1 = new Enemy("Ouppy", 6543, 1354, 864);
-        Enemy e2 = new Enemy("Sphinx", 6564, 1254, 354);
-        Enemy e3 = new Enemy("Griffin", 7895, 1724, 684);
+        Area.generateLevel(0, 35, 65, 95);
+        
+        Battle b = new Battle(1, false);
+        Shop s = new Shop(1); 
+        RandomEvent e = new RandomEvent(1, "event", 1.2);
         
         // Scenario 1 - Battle
-        //h1.enter();
+        h1.enter(b);
         h1.attack(e1);
         //h2.
         
