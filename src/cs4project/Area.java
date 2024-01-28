@@ -1,10 +1,12 @@
 package cs4project;
 
 import java.util.Random;
+import java.util.Arrays;
 
 public abstract class Area {
     private static int levelsLeft;                              // number of levels until boss level
     private static Area currentArea;                            // area the player is currently in
+    private static Area[] nextAreas = new Area[3];
     
     public Area(int level) {
         levelsLeft = level;
@@ -35,12 +37,15 @@ public abstract class Area {
 
             if (result < battleChance) { 
                 Battle b = new Battle(lvl, false);
+                Arrays.asList(nextAreas).add(b);
 
             } else if (result < shopChance) { 
                 Shop s = new Shop(lvl); 
+                Arrays.asList(nextAreas).add(s);
 
             } else if (result < bossChance) { 
                 Battle b = new Battle(lvl, true);
+                Arrays.asList(nextAreas).add(b);
             } else { 
                 RandomEvent e = new RandomEvent(lvl, "e", 1.2);
             }
