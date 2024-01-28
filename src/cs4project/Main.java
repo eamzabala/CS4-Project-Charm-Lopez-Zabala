@@ -51,12 +51,10 @@ public class Main {
         String choice = scan.nextLine();
         if (choice.equals("L")) {
             System.out.printf("After entering the dark room and lighting up a torch you realize that its filled with piles of gold");
-            Hero.setMoney(Hero.getMoney() + 100);
+            e.success(h1,q1);
         } else if (choice.equals("R")) {
             System.out.printf("As you walk along the corridor you feel the tile below you sink as you step onto it. A trap is triggered as poison tipped arrows run");
-            for (int counter = 0; counter < Hero.getHeroesList().size(); counter++) { 		      
-                Hero.getHeroesList().get(counter).setCurrentHP(Hero.getHeroesList().get(counter).getCurrentHP() - 100);
-            }   
+            e.fail(h1);
         }
         Hero.enter(s);
         
