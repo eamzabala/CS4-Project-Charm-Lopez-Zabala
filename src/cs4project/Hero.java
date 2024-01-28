@@ -11,11 +11,13 @@ public abstract class Hero extends Entity{
     protected ArrayList<Item> inventory = new ArrayList<>();
     protected ArrayList<Potion> activePotions = new ArrayList<>();
     protected ArrayList<PlayerAbility> activeAbilities = new ArrayList<>();
+    private static ArrayList<Hero> heroesList = new ArrayList<>();
             
     public Hero(String n, int m, int a, int d, int x) {
         super(n, m, a, d);
         maxMana = x;
         currentMana = maxMana;
+        heroesList.add(this);
     }
     
     // getters & setters    
@@ -56,11 +58,17 @@ public abstract class Hero extends Entity{
     public void setInventory(ArrayList<Item> inventory) {
         this.inventory = inventory;
     }
-        public ArrayList<Potion> getActivePotions() {
+    public ArrayList<Potion> getActivePotions() {
         return activePotions;
     }
     public void setActivePotions(ArrayList<Potion> activePotions) {
         this.activePotions = activePotions;
+    }
+    public static ArrayList<Hero> getHeroesList() {
+        return heroesList;
+    }
+    public static void setHeroesList(ArrayList<Hero> h) {
+        heroesList = h;
     }
     
     @Override
@@ -140,14 +148,20 @@ public abstract class Hero extends Entity{
         this.setCurrentMana(this.getCurrentMana() - n.getManaCost());                   // takes away mana
     }
     
-    public void buy(Shop n, Potion m) {                                                 // buy from shop
+    public void buyPotion(Shop n, Potion m) {                                                 // buy from shop
         if (Arrays.asList(n.getPotionsList()).contains(m)) {                        // makes sure item is in shop
             getInventory().add(m);                                                    // add to inventory
             Arrays.asList(n.getPotionsList()).remove(m);                            // remove from shop
         }
     }
+    public void buyEquipment(Shop n, Equipment m) {                                                 // buy from shop
+        if (Arrays.asList(n.getEquipmentsList()).contains(m)) {                        // makes sure item is in shop
+            getInventory().add(m);                                                    // add to inventory
+            Arrays.asList(n.getEquipmentsList()).remove(m);                            // remove from shop
+        }
+    }
     
-    public void enter(Area n) {                                                         // enter a new room
+    public static void enter(Area n) {                                                         // enter a new room
         Area.setCurrentArea(n);
     }
     
