@@ -4,6 +4,12 @@ public class RandomEvent extends Area {
     private String name;
     private double riskToReward = 1;
     
+    public RandomEvent(int n, String a, double r) {
+        super(n);
+        name = a;
+        riskToReward = r;
+    }
+    
     public String getName() {
         return name;
     }
@@ -15,11 +21,6 @@ public class RandomEvent extends Area {
     }
     public void setRiskToReward(double riskToReward) {
         this.riskToReward = riskToReward;
-    }
-    
-    public RandomEvent(String n, double r) {
-        name = n;
-        riskToReward = r;
     }
     
     public void success(Hero n, Item m) {

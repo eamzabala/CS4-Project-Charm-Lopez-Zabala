@@ -1,6 +1,5 @@
 package cs4project;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Map {
@@ -19,6 +18,7 @@ public class Map {
         float result = generator.nextFloat();
         
         if (result < battleChance) { // Creates BattleRoom
+            Battle b = new Battle(1, false);
             
         } else if (result < shopChance) { // Creates a Shop
             
