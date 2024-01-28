@@ -9,6 +9,15 @@ public class Skill {
     private int defInc;
     private int shield;
     
+    public Skill (String n, String t, int d, int h, int a, int i) {
+        name = n;
+        type = t;
+        dmg = d;
+        healVal = h;
+        atkInc = a;
+        defInc = i;
+    }
+    
     public String getName() {
         return name;
     }
@@ -51,12 +60,4 @@ public class Skill {
     public void setShield(int shield) {
         this.shield = shield;
     }
-    
-    public Skill (String n, int d, int h, int a, int i) {
-        name = n;
-        dmg = d;
-        healVal = h;
-        atkInc = a;
-        defInc = i;
-    }
-}
+ }

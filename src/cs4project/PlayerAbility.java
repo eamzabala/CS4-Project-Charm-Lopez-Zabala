@@ -7,10 +7,10 @@ public class PlayerAbility extends Skill {                                      
     private ArrayList<Enemy> enemyTargets = new ArrayList<>();
     private ArrayList<Hero> allyTargets = new ArrayList<>();
     
-    public PlayerAbility(String n, int d, int h, int a, int i, int m, int t) {
-        super(n, d, h, a, i);
+    public PlayerAbility(String n, String t, int d, int h, int a, int i, int m, int r) {
+        super(n, t, d, h, a, i);
         manaCost = m;
-        numTargets = t;
+        numTargets = r;
     }
     
     public int getManaCost(){

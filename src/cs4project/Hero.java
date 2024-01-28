@@ -122,7 +122,7 @@ public abstract class Hero extends Entity{
             this.setDef(this.getDef() + n.getDefInc());                                 // def buff
        
             if(n.getType().equals("attack")) {
-                int damage = (int) ((this.getAtk()*this.getAtk())/(double)(this.getAtk()+target.getDef())); // dmg buff
+                int damage = n.getDmg() * this.getAtk();                                // dmg
                 target.setCurrentHP(target.getCurrentHP() - damage);                    // targets hp - dmg
                 if(target.getCurrentHP() > 0) {
                     System.out.printf("");                                         // target still alive
