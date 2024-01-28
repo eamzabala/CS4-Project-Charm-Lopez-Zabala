@@ -24,10 +24,10 @@ public class Battle extends Area {
         this.boss = boss;
     }
      
-     public void win(Hero n, Item m){
-        n.getInventory().add(m);                                      // adds a new item to hero's inventory
-        int buff = (int) (Math.round(Math.random() * 1000));            // gives a random buff (in the 100s)
-        n.setAtk(n.getAtk() + buff);                                    // sets hero's atk to be atk + buff
+     public void win(Hero hero, Item item){
+        hero.getInventory().add(item);                                      // adds a new item to hero's inventory
+        int buff = (int) (Math.round(Math.random() * 1000));                  // gives a random buff (in the 100s)
+        hero.setAtk(hero.getAtk() + buff);                                    // sets hero's atk to be atk + buff
      }
      
      public void lose(){

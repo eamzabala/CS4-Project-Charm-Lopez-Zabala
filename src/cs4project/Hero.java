@@ -10,7 +10,6 @@ public abstract class Hero extends Entity{
     protected PlayerAbility[] skills = new PlayerAbility[4];
     protected ArrayList<Item> inventory = new ArrayList<>();
     protected ArrayList<Potion> activePotions = new ArrayList<>();
-    protected ArrayList<PlayerAbility> activeAbilities = new ArrayList<>();
     private static ArrayList<Hero> heroesList = new ArrayList<>();
             
     public Hero(String n, int m, int a, int d, int x) {
@@ -45,7 +44,6 @@ public abstract class Hero extends Entity{
     public void setCurrentEquip(Equipment[] currentEquip) {
         this.currentEquip = currentEquip;
     }
-    @Override
     public PlayerAbility[] getSkills() {
         return skills;
     }
@@ -77,7 +75,7 @@ public abstract class Hero extends Entity{
     }
     
     @Override
-    public void attack(Entity n) {                                                      // adds mana upon attacking
+    public void attack(Entity target) {                                                 // adds mana upon attacking
         this.setCurrentMana(this.getCurrentMana() + 0.1 * getMaxMana());
     }
     

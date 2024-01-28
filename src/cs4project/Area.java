@@ -1,7 +1,6 @@
 package cs4project;
 
 import java.util.Random;
-import java.util.Arrays;
 
 public abstract class Area {
     private static int levelsLeft;                                              // number of levels until boss level
@@ -44,22 +43,22 @@ public abstract class Area {
 
                 if (result < battleChance) {                                    // creates a battle room
                     Battle b = new Battle(lvl, false);
-                    Arrays.asList(nextAreas).add(b);                        // adds to the list of next areas
+                    nextAreas[n] = b;                                           // adds to the list of next areas
                     for (int m = 0; m > 3; n++) {
                         int l = (int) (Math.random() * 10);                     // random index
                         b.getEnemiesList().add(Enemy.enemiesMasterlist.get(l));
                     }
                 } else if (result < shopChance) {                               // creates a shop room
                     Shop s = new Shop(lvl); 
-                    Arrays.asList(nextAreas).add(s);
+                    nextAreas[n] = s;
                 } else {                                                        // creates a random event room
                     RandomEvent e = new RandomEvent(lvl, "event", 1.2);
-                    Arrays.asList(nextAreas).add(e);
+                    nextAreas[n] = e;
                 }
             }
         } else {                                                                // final level, creates boss room
             Battle b = new Battle(11, true);
-            Arrays.asList(nextAreas).add(b);
+            nextAreas[0] = b;
         }
         
     }

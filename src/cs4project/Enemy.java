@@ -4,18 +4,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Enemy extends Entity {
+    protected Skill[] skills = new Skill[2];
     public static ArrayList<Enemy> enemiesMasterlist = new ArrayList<>();
         
     public Enemy(String n, int m, int a, int d) {
         super(n, m, a, d);
     }
     
-    public void useSkill(Skill n, Entity target) {
-        if ((Arrays.asList(getSkills())).contains(n)) {                                                     // checks if its in the skills list
-            this.setCurrentHP(this.getCurrentHP() + n.getHealVal());                                            // heals (if healVal > 0)
-            this.setAtk(this.getAtk() + n.getAtkInc());                                                         // gives attack boost
+    //getters & setters
+    public void setSkills(Skill[] skills) {
+        this.skills = skills;
+    }
+    public Skill[] getSkills() {
+        return skills;
+    }
+    
+    public void useSkill(Skill skill, Entity target) {
+        if ((Arrays.asList(getSkills())).contains(skill)) {                                                     // checks if its in the skills list
+            this.setCurrentHP(this.getCurrentHP() + skill.getHealVal());                                            // heals (if healVal > 0)
+            this.setAtk(this.getAtk() + skill.getAtkInc());                                                         // gives attack boost
        
-            if(n.getType().equals("attack")) {
+            if(skill.getType().equals("attack")) {
                 int damage = (int) ((this.getAtk()*this.getAtk())/(double)(this.getAtk()+target.getDef()));     // damage to be done to target
                 if (target.shield > 0) {                                                                        // if target has shield
                     int m = target.getShield();                                                                 // placeholder

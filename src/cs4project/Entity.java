@@ -4,7 +4,6 @@ public abstract class Entity implements Understandable{
     protected String name;
     protected int shield = 0;                                                                           // stays as 0 for all enemies
     protected int maxHP, currentHP, atk, def;
-    protected Skill[] skills = new Skill[2];
     
     public Entity(String n, int m, int a, int d) {
         name = n;
@@ -30,9 +29,6 @@ public abstract class Entity implements Understandable{
     public void setDef(int def) {
         this.def = def;
     }
-    public void setSkills(Skill[] skills) {
-        this.skills = skills;
-    }
     public void setHP(int n) {
         this.setCurrentHP(this.getCurrentHP() + n);
     }
@@ -51,9 +47,6 @@ public abstract class Entity implements Understandable{
     public int getDef() {
         return def;
     }
-    public Skill[] getSkills() {
-        return skills;
-    }
     public int getShield() {
         return shield;
     }
@@ -62,28 +55,28 @@ public abstract class Entity implements Understandable{
     }
     
     @Override
-    public void getStats(){                                                                             // gives stats
+    public void getStats(){                                                                                  // gives stats
         System.out.printf("%s: %d, %d, %d, %d", getName(), getMaxHP(), getCurrentHP(), getAtk(), getDef());
     }
         
     
-    public void attack(Entity n) {
-        int damage = (int) (0.1 * (getAtk()*getAtk())/(double)(getAtk()+n.getDef()));                   // 10% of normal atk 
-        if (n.shield > 0) {                                                                             // if there is shield, dmg goes to shield until no shield
-            int m = n.getShield();
-            n.setShield(m - damage);
-            if (damage > m) {                                                                           // if too much dmg, rest goes to hp and shield is set to 0
-                n.setShield(0);
-                n.setCurrentHP(damage - m);
+    public void attack(Entity target) {
+        int damage = (int) (0.1 * (getAtk()*getAtk())/(double)(getAtk()+target.getDef()));                   // 10% of normal atk 
+        if (target.shield > 0) {                                                                             // if there is shield, dmg goes to shield until no shield
+            int m = target.getShield();
+            target.setShield(m - damage);
+            if (damage > m) {                                                                                // if too much dmg, rest goes to hp and shield is set to 0
+                target.setShield(0);
+                target.setCurrentHP(damage - m);
             }
         } else {
-            n.setCurrentHP(n.getCurrentHP() - damage);
+            target.setCurrentHP(target.getCurrentHP() - damage);
         }
-        if(n.getCurrentHP() > 0) {                                                                      // target is still alive
+        if(target.getCurrentHP() > 0) {                                                                      // target is still alive
             System.out.printf("");
         } else {
-            n.setCurrentHP(0);                                                                  // taget is dead
-            System.out.printf("%s died. %n", n.getName());
+            target.setCurrentHP(0);                                                                 // taget is dead
+            System.out.printf("%s died. %n", target.getName());
         }
     }  
 }

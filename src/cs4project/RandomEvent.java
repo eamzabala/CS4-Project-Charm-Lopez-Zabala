@@ -23,14 +23,14 @@ public class RandomEvent extends Area {
         this.riskToReward = riskToReward;
     }
     
-    public void success(Hero n, Item m) {
-        n.getInventory().add(m);
+    public void success(Hero hero, Item item) {
+        hero.getInventory().add(item);
         int buff = (int) (Math.round(Math.random() * 100) * getRiskToReward());
-        n.setAtk(buff);
+        hero.setAtk(buff);
     }
     
-    public void fail(Hero n) {
+    public void fail(Hero hero) {
         Hero.setMoney((int) (Hero.getMoney() - (int) 10 * getRiskToReward()));
-        n.setCurrentHP((int) (n.getCurrentHP() - (int) 100 * getRiskToReward()));
+        hero.setCurrentHP((int) (hero.getCurrentHP() - (int) 100 * getRiskToReward()));
     }
 }
